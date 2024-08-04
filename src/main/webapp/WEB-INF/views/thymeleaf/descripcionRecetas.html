@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descripción de Receta</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--google-fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group flex-row">
+                <a th:href="@{/home}" class="list-group-item list-group-item-action ">MI FATLOSS</a>
+                <a th:href="@{/categoria_alimentos}" class="list-group-item list-group-item-action">ALIMENTOS</a>
+                <a th:href="@{/recetas}" class="list-group-item list-group-item-action activo">RECETAS</a>
+                <a th:href="@{/actividadesFisicas}" class="list-group-item list-group-item-action">EN FORMA</a>
+                <a th:href="@{/estadisticasUsuario}" class="list-group-item list-group-item-action">ESTADISTICAS</a>
+                <a th:href="@{/calendarioDieta}" class="list-group-item list-group-item-action">CALENDARIO</a>
+                <a th:href="@{/comunidad}" class="list-group-item list-group-item-action">COMUNIDAD</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-left: 20px; padding: 10px;">
+    <p>
+        <span><a th:href="@{/home}" style="color: green;">Home</a></span> >
+        <span><a th:href="@{/recetas}" style="color: green;">Recetas</a></span> >
+        <span th:text="${receta.nombre}"></span>
+    </p>
+</div>
+<div class="row py-5">
+    <div class="col-md-8" style="padding-left: 100px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 th:text="${receta.nombre}"></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Ingredientes:</h3>
+                <div th:utext="${receta.ingredientes}"></div>
+                <h3>Instrucciones:</h3>
+                <div th:utext="${receta.instrucciones}"></div>
+            </div>
+            <div class="col-md-4">
+                <img th:src="@{'/img/recetas/' + ${receta.imagen}}" class="img-fluid" alt="receta">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <aside>
+            <h2>Información Nutricional</h2>
+            <table>
+
+                <tr>
+                    <th>Tamaño de la Porción</th>
+                    <td th:text="${receta.cantidad}+ 'porción' "></td>
+                </tr>
+                <tr>
+                    <th>Calorias</th>
+                    <td th:text="${receta.calorias}"></td>
+                </tr>
+                <tr>
+                    <th>Energía</th>
+                    <td th:text="${receta.energia}+' kcal'"></td>
+                </tr>
+                <tr>
+                    <th>Carbohidratos</th>
+                    <td th:text="${receta.carbohidratos}+' g'"></td>
+                </tr>
+                <tr>
+                    <th>Azúcar</th>
+                    <td th:text="${receta.azucar}+ 'g'"></td>
+                </tr>
+                <tr>
+                    <th>Proteína</th>
+                    <td th:text="${receta.proteina}+' g'"></td>
+                </tr>
+                <tr>
+                    <th>Grasa</th>
+                    <td th:text="${receta.grasa}+' g'"></td>
+                </tr>
+                <tr>
+                    <th>Grasa Saturada</th>
+                    <td th:text="${receta.grasaSaturada+ 'g'}"></td>
+                </tr>
+                <tr>
+                    <th>Grasa Poliinsaturada</th>
+                    <td th:text="${receta.grasaPoliinsaturada}+ 'g'"></td>
+                </tr>
+                <tr>
+                    <th>Grasa Monoinsaturada</th>
+                    <td th:text="${receta.grasaMonoinsaturada}+' g'"></td>
+                </tr>
+                <tr>
+                    <th>Colesterol</th>
+                    <td th:text="${receta.colesterol}+ 'mg'"></td>
+                </tr>
+                <tr>
+                    <th>Fibra</th>
+                    <td th:text="${receta.fibra}+ 'g'"></td>
+                </tr>
+                <tr>
+                    <th>Sodio</th>
+                    <td th:text="${receta.sodio}+' mg'"></td>
+                </tr>
+                <tr>
+                    <th>Potasio</th>
+                    <td th:text="${receta.potasio}+' mg'"></td>
+                </tr>
+            </table>
+        </aside>
+</div>
+</div>
+<div th:replace="footer ::footer"></div>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+
+        background-color: #f9f9f9;
+    }
+
+    h2 {
+        color: #007bff;
+    }
+    h3 {
+        margin-top: 20px;
+        color: #4caf50;
+    }
+    ul {
+        margin-bottom: 20px;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+
+    aside {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        margin-left: 20px;;
+    }
+    h2 {
+        color: #007bff;
+        margin-bottom: 10px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #ddd;
+    }
+
+    .borde-verde {
+        border: 2px solid #4caf50;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-right: 14px;
+    }
+</style>
+</body>
+</html>

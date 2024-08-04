@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalles Alimento</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--google-fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group flex-row">
+                <a th:href="@{/home}" class="list-group-item list-group-item-action ">MI FATLOSS</a>
+                <a th:href="@{/categoria_alimentos}" class="list-group-item list-group-item-action activo">ALIMENTOS</a>
+                <a th:href="@{/recetas}" class="list-group-item list-group-item-action">RECETAS</a>
+                <a th:href="@{/actividadesFisicas}" class="list-group-item list-group-item-action">EN FORMA</a>
+                <a th:href="@{/estadisticasUsuario}" class="list-group-item list-group-item-action">ESTADISTICAS</a>
+                <a th:href="@{/calendarioDieta}" class="list-group-item list-group-item-action">CALENDARIO</a>
+                <a th:href="@{/comunidad}" class="list-group-item list-group-item-action">COMUNIDAD</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-left: 20px; padding: 10px;">
+    <p>
+        <span ><a th:href="@{/home}" style="color: green;">Home</a></span> >
+        <span><a th:href="@{/categoria_alimentos}" style="color: green;">Alimento</a></span> >
+        <span><a th:href="@{|/categorias/${categoriaId}|}" style="color: green;"> <span th:text="${categoriaNombre}" style="color: green;"></span></a></span> >
+        <span th:text="${alimento.nombre}" style="color: green;"></span>
+    </p>
+</div>
+
+<div class="container" style="min-height: 60vh;">
+    <div class="row">
+        <div class="col-md-6">
+            <img th:src="@{'/img/alimentos/' + ${alimento.imagen}}" class="card-img-top img-fluid mx-auto d-block" style="width: 250px; height: 250px;" alt="alimento">
+            <form th:action="@{/detalles_alimento/agregar}" method="post" class="form-horizontal" id="alimentoForm">
+                <input type="hidden" th:value="${alimento.id}" name="alimentoId" />
+                <input type="hidden" th:value="${from}" name="from" />
+                <div class="form-group row">
+                    <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:value="${alimento.nombre}" name="nombre" id="nombre" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tipoColacion" class="col-sm-2 col-form-label">Comida:</label>
+                    <div class="col-sm-10">
+                        <select id="tipoColacion" name="tipoColacion" class="form-control">
+                            <option value="0" th:selected="${tipoColacion == 0}">Desayuno</option>
+                            <option value="1" th:selected="${tipoColacion == 1}">Snacks</option>
+                            <option value="2" th:selected="${tipoColacion == 2}">Almuerzo</option>
+                            <option value="3" th:selected="${tipoColacion == 3}">Merienda</option>
+                            <option value="4" th:selected="${tipoColacion == 4}">Cena</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
+                    <div class="col-sm-10">
+                        <input type="date" id="fecha" name="fecha" th:value="${fechaColacion}" class="form-control" />                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cantidad" class="col-sm-2 col-form-label">Cantidad:</label>
+                    <div class="col-sm-10">
+                        <input type="number" id="cantidad" name="cantidad" min="1" th:value="${cantidad != null ? cantidad : (alimento.cantidad != null ? alimento.cantidad : 1)}" class="form-control" />                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" name="action" value="guardar" class="btn btn-primary">Guardar</button>
+                        <button type="submit" name="action" value="actualizar" class="btn btn-primary">Actualizar</button>
+                        <button type="submit" name="action" value="cancelar" class="btn btn-primary">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+            <p th:text="${mensaje}"></p>
+        </div>
+
+        <div class="col-md-6">
+            <aside>
+                <h2>Información Nutricional</h2>
+                <table>
+                    <tr>
+                        <th>Tamaño de la Porción</th>
+                        <td th:text="${cantidad} + (${cantidad} == 1 ? ' porción' : ' porciones')"></td>
+                    </tr>
+                    <tr>
+                        <th>Calorías</th>
+                        <td th:text="${alimento.baseCalorias * (cantidad != null ? cantidad : 1)}"></td>
+                    </tr>
+                    <tr>
+                        <th>Energía</th>
+                        <td th:text="${alimento.baseEnergia * (cantidad != null ? cantidad : 1)} + ' kcal'"></td>
+                    </tr>
+                    <tr>
+                        <th>Carbohidratos</th>
+                        <td th:text="${#numbers.formatDecimal(alimento.baseCarbohidratos * (cantidad != null ? cantidad : 1), 1, 1)} + ' g'"></td>
+                    </tr>
+                    <tr>
+                        <th>Azúcar</th>
+                        <td th:text="${#numbers.formatDecimal(alimento.baseAzucar * (cantidad != null ? cantidad : 1), 1, 1)} + ' g'"></td>
+                    </tr>
+                    <tr>
+                        <th>Proteína</th>
+                        <td th:text="${#numbers.formatDecimal(alimento.baseProteina * (cantidad != null ? cantidad : 1), 1, 1)} + ' g'"></td>
+                    </tr>
+                    <tr>
+                        <th>Grasa Saturada</th>
+                        <td th:text="${#numbers.formatDecimal(alimento.baseGrasaSaturada * (cantidad != null ? cantidad : 1), 1, 1)} + ' g'"></td>
+                    </tr>
+                    <tr>
+                        <th>Grasa Saturada</th>
+                        <td th:text="${#numbers.formatDecimal(alimento.baseGrasaSaturada * (cantidad != null ? cantidad : 1), 1, 1)} + ' g'"></td>
+                    </tr>
+                    <tr>
+                        <th>Grasa Poliinsaturada</th>
+                        <td th:text="${#numbers.formatDecimal(alimento.baseGrasaPoliinsaturada * (cantidad != null ? cantidad : 1), 1, 1)} + ' g'"></td>
+                    </tr>
+                    <tr>
+                        <th>Grasa Monoinsaturada</th>
+                        <td th:text="${#numbers.formatDecimal(alimento.baseGrasaMonoinsaturada * (cantidad != null ? cantidad : 1), 1, 1)} + ' g'"></td>
+                    </tr>
+                    <tr>
+                        <th>Colesterol</th>
+                        <td th:text="${alimento.baseColesterol * (cantidad != null ? cantidad : 1)} + ' mg'"></td>
+                    </tr>
+                    <tr>
+                        <th>Fibra</th>
+                        <td th:text="${alimento.baseFibra * (cantidad != null ? cantidad : 1)} + ' g'"></td>
+                    </tr>
+                    <tr>
+                        <th>Sodio</th>
+                        <td th:text="${alimento.baseSodio * (cantidad != null ? cantidad : 1)} + ' mg'"></td>
+                    </tr>
+                    <tr>
+                        <th>Potasio</th>
+                        <td th:text="${alimento.basePotasio * (cantidad != null ? cantidad : 1)} + ' mg'"></td>
+                    </tr>
+                </table>
+            </aside>
+
+        </div>
+    </div>
+</div>
+
+<div th:replace="footer :: footer"></div>
+<script>
+    document.getElementById('alimentoForm').addEventListener('submit', function(event) {
+        var cantidad = document.getElementById('cantidad').value;
+        if (cantidad > 15) {
+            var confirmar = confirm('La cantidad es mayor a 15. ¿Desea proceder?');
+            if (!confirmar) {
+                event.preventDefault();
+            }
+        }
+    });
+</script>
+<script>
+    // Obtener la fecha actual
+    // Obtener el elemento de fecha
+    var fechaElement = document.getElementById('fecha');
+
+    // Verificar si el elemento de fecha ya tiene un valor
+    if (!fechaElement.value) {
+        // Obtener la fecha actual
+        var today = new Date();
+
+        // Formatear la fecha al formato yyyy-MM-dd
+        var formattedDate = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
+
+        // Establecer la fecha formateada como valor por defecto del input de fecha
+        fechaElement.value = formattedDate;
+    }
+</script>
+
+
+</body>
+</html>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+    h2 {
+        color: #007bff;
+    }
+    h3 {
+        margin-top: 20px;
+        color: #4caf50;
+    }
+    ul {
+        margin-bottom: 20px;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+
+    aside {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        margin-left: 20px;;
+    }
+    h2 {
+        color: #007bff;
+        margin-bottom: 10px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #ddd;
+    }
+
+
+</style>
