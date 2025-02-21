@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.dominio.RepositorioAlimentoTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 3.007 s <<< FAILURE! - in com.tallerwebi.dominio.RepositorioAlimentoTest
+com.tallerwebi.dominio.RepositorioAlimentoTest.testNoObtenerAlimentosPorNombreIncorrecto  Time elapsed: 0.079 s  <<< ERROR!
+org.hibernate.PropertyValueException: not-null property references a null or transient value : com.tallerwebi.dominio.Alimento.cantidad
+	at com.tallerwebi.dominio.RepositorioAlimentoTest.givenExisteAlimento(RepositorioAlimentoTest.java:57)
+	at com.tallerwebi.dominio.RepositorioAlimentoTest.testNoObtenerAlimentosPorNombreIncorrecto(RepositorioAlimentoTest.java:92)
+
+com.tallerwebi.dominio.RepositorioAlimentoTest.testObtenerAlimentoPorNombre  Time elapsed: 0.003 s  <<< ERROR!
+org.hibernate.PropertyValueException: not-null property references a null or transient value : com.tallerwebi.dominio.Alimento.cantidad
+	at com.tallerwebi.dominio.RepositorioAlimentoTest.givenExisteAlimento(RepositorioAlimentoTest.java:57)
+	at com.tallerwebi.dominio.RepositorioAlimentoTest.testObtenerAlimentoPorNombre(RepositorioAlimentoTest.java:74)
+
+com.tallerwebi.dominio.RepositorioAlimentoTest.testObtenerTodosLosAlimentos  Time elapsed: 0.003 s  <<< ERROR!
+org.hibernate.PropertyValueException: not-null property references a null or transient value : com.tallerwebi.dominio.Alimento.cantidad
+	at com.tallerwebi.dominio.RepositorioAlimentoTest.givenExisteAlimento(RepositorioAlimentoTest.java:57)
+	at com.tallerwebi.dominio.RepositorioAlimentoTest.testObtenerTodosLosAlimentos(RepositorioAlimentoTest.java:37)
+
+com.tallerwebi.dominio.RepositorioAlimentoTest.testNoObtenerAlimentosPorIdCategoriaIncorrecto  Time elapsed: 0.004 s  <<< ERROR!
+org.hibernate.PropertyValueException: not-null property references a null or transient value : com.tallerwebi.dominio.Alimento.cantidad
+	at com.tallerwebi.dominio.RepositorioAlimentoTest.givenExisteAlimento(RepositorioAlimentoTest.java:57)
+	at com.tallerwebi.dominio.RepositorioAlimentoTest.testNoObtenerAlimentosPorIdCategoriaIncorrecto(RepositorioAlimentoTest.java:105)
+

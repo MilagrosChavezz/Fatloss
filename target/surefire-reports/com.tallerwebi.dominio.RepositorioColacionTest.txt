@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.dominio.RepositorioColacionTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.01 s <<< FAILURE! - in com.tallerwebi.dominio.RepositorioColacionTest
+com.tallerwebi.dominio.RepositorioColacionTest.testObtenerColacion  Time elapsed: 0.006 s  <<< ERROR!
+org.hibernate.PropertyValueException: not-null property references a null or transient value : com.tallerwebi.dominio.Alimento.cantidad
+	at com.tallerwebi.dominio.RepositorioColacionTest.testObtenerColacion(RepositorioColacionTest.java:48)
+

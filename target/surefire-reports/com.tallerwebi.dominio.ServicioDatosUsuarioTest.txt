@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.dominio.ServicioDatosUsuarioTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.151 s <<< FAILURE! - in com.tallerwebi.dominio.ServicioDatosUsuarioTest
+com.tallerwebi.dominio.ServicioDatosUsuarioTest.SeGuardanLosMacronutrientesDelUsuario  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.tallerwebi.dominio.RepositorioMacronutrientes.guardar(com.tallerwebi.dominio.MacronutrientesUsuario)" because "this.repositorioMacronutrientes" is null
+	at com.tallerwebi.dominio.ServicioDatosUsuarioTest.whenCalculoLosMacronutrientesDelUsuario(ServicioDatosUsuarioTest.java:127)
+	at com.tallerwebi.dominio.ServicioDatosUsuarioTest.SeGuardanLosMacronutrientesDelUsuario(ServicioDatosUsuarioTest.java:110)
+

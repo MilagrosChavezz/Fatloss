@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.dominio.ServicioCategoriaAlimentoTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.023 s <<< FAILURE! - in com.tallerwebi.dominio.ServicioCategoriaAlimentoTest
+com.tallerwebi.dominio.ServicioCategoriaAlimentoTest.testObtenerCategoriaPorIdFallido  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.RuntimeException to be thrown, but nothing was thrown.
+	at com.tallerwebi.dominio.ServicioCategoriaAlimentoTest.whenObtenerException(ServicioCategoriaAlimentoTest.java:65)
+	at com.tallerwebi.dominio.ServicioCategoriaAlimentoTest.testObtenerCategoriaPorIdFallido(ServicioCategoriaAlimentoTest.java:52)
+

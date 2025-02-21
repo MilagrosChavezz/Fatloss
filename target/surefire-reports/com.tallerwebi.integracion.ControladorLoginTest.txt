@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: com.tallerwebi.integracion.ControladorLoginTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.111 s <<< FAILURE! - in com.tallerwebi.integracion.ControladorLoginTest
+com.tallerwebi.integracion.ControladorLoginTest.debeRetornarLaPaginaLoginCuandoSeNavegaALLogin  Time elapsed: 0.087 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at com.tallerwebi.integracion.ControladorLoginTest.debeRetornarLaPaginaLoginCuandoSeNavegaALLogin(ControladorLoginTest.java:66)
+
+com.tallerwebi.integracion.ControladorLoginTest.debeRetornarLaPaginaLoginCuandoSeNavegaALaRaiz  Time elapsed: 0.02 s  <<< FAILURE!
+java.lang.AssertionError: 
+
+Expected: a string equal to "redirect:/inicio" ignoring case
+     but: was "redirect:/login"
+	at com.tallerwebi.integracion.ControladorLoginTest.debeRetornarLaPaginaLoginCuandoSeNavegaALaRaiz(ControladorLoginTest.java:58)
+
